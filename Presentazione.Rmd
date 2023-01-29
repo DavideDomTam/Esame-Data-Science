@@ -1,0 +1,129 @@
+---
+title: "Spopolamento all'italiana"
+author: "Davide Domenico Tammaro"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+library(rCharts)
+library(readr)
+library(tidyr)
+library(lubridate)
+library(stringr)
+library(scales)
+library(dplyr)
+library(stringr)
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+library(ggthemes)
+library(patchwork) 
+library(grid)
+library(ggrepel)
+library(forcats)
+library(RColorBrewer)
+library(viridis)
+library(numbers)
+library(XML)
+library(reshape2)
+library(plyr)
+library(ggplot2)
+library(hrbrthemes)
+library(viridis)
+
+
+
+source("Depopolazione Italia.R")
+
+```
+
+
+
+## Fonti
+
+* Eta media genitori <https://demo.istat.it/tavole/?t=p4>
+
+* Dataset popolazione residente italiana 2002-2022:
+
+   + <http://dati.istat.it/Index.aspx?QueryId=42869#>
+
+   + <http://dati.istat.it/Index.aspx?QueryId=42869#>
+  
+* Dataset migrazione <http://dati.istat.it/Index.aspx?QueryId=42869#>
+
+## Domande
+
+- La popolazione italiana sta diminuendo oppure sta aumentando?
+- Il numero dei nuovi nati sta diminundo/aumentando in tutta Italia oppure ci sono regioni con trend diversi?
+- L’eta media per avere un bambino sta aumentando?
+- L'emigrazione dei giovani è un fattore molto importante in questa processo di spopolamento?
+
+## Evoluzione della popolazione italiana
+
+```{r Pop_It_Tot}
+Pop_It_Tot
+```
+
+## Suddivisione della popolazione italiana per età
+
+```{r Popolazione_ITA}
+Popolazione_ITA
+```
+
+
+## Natalità
+
+```{r Natalita}
+boxplot(Nati_Campione_Regione$incremento_percentuale ~ new_order , ylab="Incremento percentuale" ,xlab = "Regioni", col="light blue",  main="Incremento percentuale della natalita")
+```
+
+## Analisi Natalità 1°
+Italia:
+```{r Nati_Italia}
+summary(Nati_Italia$incremento_percentuale)
+```
+Lombardia:
+```{r Nati_Lombardia}
+summary(Nati_Lombardia$incremento_percentuale)
+```
+Lazio:
+```{r Nati_Lazio}
+summary(Nati_Lazio$incremento_percentuale)
+```
+
+## Analisi Natalità 2°
+
+Campania:
+```{r Nati_Campania}
+summary(Nati_Campania$incremento_percentuale)
+```
+Sicilia:
+```{r Nati_Sicilia}
+summary(Nati_Sicilia$incremento_percentuale)
+```
+Veneto:
+```{r Nati_Veneto}
+summary(Nati_Veneto$incremento_percentuale)
+```
+
+
+## Eta media padre
+```{r Padre}
+
+Eta_media_del_padre_alla_nascita
+```
+
+## Eta media madre
+```{r Madre}
+Eta_media_della_madre_alla_nascita
+```
+
+## Trend dell'immigrazione
+```{r Emigrazione}
+Emigrazione_Giovani
+```
+
